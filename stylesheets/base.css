@@ -287,4 +287,8 @@ footer ul {
     width: inherit; }
 
   .col-3 img {
-    width: 80%; } }
+    width: 80%; }
+
+  footer p, footer ul {
+    float: none;
+    width: inherit; } }

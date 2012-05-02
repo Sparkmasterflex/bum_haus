@@ -258,5 +258,9 @@ footer {
     }
   }
   #content iframe { width: inherit; }
-  .col-3 img { width: 80%; } 
+  .col-3 img { width: 80%; }
+  
+  footer {
+    p, ul { float: none; width: inherit; }
+  }
 }
