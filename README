@@ -1,0 +1,21 @@
+So what has been added?
+A directory structure including: images, includes, javascripts, stylesheets (sass and images within), and an index.php.
+
+Images
+Here you should store all your inline images for your website.
+
+Includes
+For any files that added to main files (index.php, abount.php, etc), such as a header, footer or sidebar. Within this directory is included a functions.php for storing needed php functions.
+
+Javascripts
+Your javascript files. Included is a base.js with Prototype/Scriptaculous specific code.
+
+Stylesheets
+Within this directory you will find another Images folder and a SASS folder.
+
+Why another images folder? I prefer to store images called by my stylesheets store seperately from inline images. It's completely my preference and you need not follow this structure if you do not care to.
+
+SASS? What the hell is SASS? Just the most wonderful thing to ever happen to CSS. Take some time to read up on it.
+
+Index.php
+Your standard index file. It includes a good amount of HTML5 standards and useful header meta tags and css/javascript links.

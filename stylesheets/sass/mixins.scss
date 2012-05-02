@@ -1,0 +1,84 @@
+$text-color: #fff;
+$hover: #f00;
+$body-bg: #5C3317; //#5E2605; //#5C3317; //5b4242;
+$bum-haus: #f00;
+
+@mixin hidden {
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+@mixin square($w, $h: null) {
+  display: block;
+  width: $w;
+  @if $h == null {
+    height: $w;
+  } @else {
+    height: $h;
+  }
+}
+
+@mixin bg-size($w, $h) {
+  background-size: $w $h;
+  -moz-background-size: $w $h;
+  -webkit-background-size: $w $h;
+  -o-background-size: $w $h;
+}
+
+@mixin box-shadow($x, $y, $blur, $c) {
+  box-shadow: $x $y $blur $c;
+  -webkit-box-shadow: $x $y $blur $c;
+  -moz-box-shadow: $x $y $blur $c;
+}
+
+@mixin inset-shadow($x, $y, $blur, $c) {
+  box-shadow: inset $x $y $blur $c;
+  -webkit-box-shadow: inset $x $y $blur $c;
+  -moz-box-shadow: inset $x $y $blur $c;
+}
+
+@mixin no-box-shadow {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+@mixin border-radius($tl, $tr: null, $br: null, $bl: null) {
+  @if $tr == null {
+    border-radius: $tl;
+    -webkit-border-radius: $tl;
+    -moz-border-radius: $tl;
+  } @else {
+    border-radius: $tl $tr $br $bl;
+    -webkit-border-radius: $tl $tr $br $bl;
+    -moz-border-radius: $tl $tr $br $bl;
+  }
+}
+
+@mixin gradient-two($c1, $c2, $p1: 0%, $p2: 100%, $start: top) {
+  background: $c2; /* Old browsers */
+  background: -moz-linear-gradient($start, $c1 $p1, $c2 $p2);
+  @if $start == left {
+    background: -webkit-gradient(linear, left top, right top, color-stop($p1, $c2), color-stop($p2, $c2));
+  } @else {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop($p1, $c2), color-stop($p2, $c2));
+  }
+  background: -webkit-linear-gradient($start, $c1 $p1, $c2 $p2);
+  background: -o-linear-gradient($start, $c1 $p1, $c2 $p2);
+  background: -ms-linear-gradient($start, $c1 $p1, $c2 $p2);
+  background: linear-gradient($start, $c1 $p1, $c2 $p2);
+}
+
+@mixin rotate($deg) {
+  transform: rotate($deg);
+  -o-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+}
+
+@mixin transition($style, $duration, $ease:linear, $delay:0) {
+  transition: $style $duration $ease $delay;
+  -moz-transition: $style $duration $ease $delay;
+  -webkit-transition: $style $duration $ease $delay;
+  -o-transition: $style $duration $ease $delay;
+}
