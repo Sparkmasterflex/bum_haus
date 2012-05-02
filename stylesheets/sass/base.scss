@@ -238,7 +238,7 @@ footer {
   }
 }
 
-@media(max-width: 600px) {
+@media screen and (max-width: 600px) {
   section { width: inherit; }
   header {
     padding-bottom: 1.5em;

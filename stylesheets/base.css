@@ -260,7 +260,7 @@ footer ul {
       -moz-border-radius: 3px; }
     .col-3 img {
       width: 60%; } }
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   section {
     width: inherit; }
 
