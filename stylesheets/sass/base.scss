@@ -114,11 +114,103 @@ header {
   img { 
     width: 100%;
     border: 3px solid #fff;
-    @include box-shadow(0,0,10px, rgba(206, 206, 206, 0.6)); 
+    @include box-shadow(0,0,10px, rgba(206, 206, 206, 0.6));
   }
   time {
     display: block; 
     margin-bottom: 0.75em;
+  }
+}
+
+#fb-wall {
+  padding: 1em;
+  max-height: 30em;
+  overflow-y: auto;
+  background: #333;
+  @include box-shadow(0,0,10px, rgba(206, 206, 206, 0.75));
+  p, span { line-height: 1.3em; font-size: 1.1em; }
+  a { color: #600; font-size: 10px; }
+  .fb-wall-box {
+    margin-bottom: 2em;
+    &.loading { height:300px;  background: url(images/loader-small.gif) no-repeat center center; }
+  }
+  img { width: auto; border: none; @include no-box-shadow; }
+  .fb-wall-avatar img, .fb-wall-comment-avatar img { @include box-shadow(0,0,7px, rgba(206, 206, 206, 0.6)); }
+  .fb-wall-avatar { float: left; border: 0; }
+  .fb-wall-data{ margin-left: 6em; }
+  .fb-wall-media{ display: block; margin-bottom: 0.5em; }
+  .fb-wall-picture{
+    margin-right:10px;
+    border:0;
+    display:block;
+    margin:3px;
+  }
+  .fb-wall-name{
+    display:block;
+    font-weight:bold;
+    color:#3B5998;
+  }
+  .fb-wall-caption { display: block; color: #3B5998; }
+  .fb-wall-description { display: block; color: #777; }
+  .fb-wall-icon { float: left; margin-right: 5px; }
+  .fb-wall-date {
+    font-size: 10px;
+    color: #777;
+    clear: left;
+    display: block;
+    margin-bottom: 5px;
+  }  
+  .fb-wall-message {
+    display: block;
+    color: #ccc; 
+    margin-bottom: 5px;
+    .fb-wall-message-from { font: { size: 1em; weight: bold; } color: $bum-haus; } 
+  }
+  /* Likes*/
+  
+  .fb-wall-likes {
+    border-bottom: 1px solid #888;
+    margin: 0 0 2px -30px;
+    display: block;
+    font-size: 11px;
+    background: url(images/like.gif) no-repeat 0 0 #333;
+    padding-top: 5px;
+  }
+  .fb-wall-likes div {
+    margin: 0;
+    background: url(images/like.gif) no-repeat 0 -5px #EDEFF4;
+    padding: 5px 5px 4px 24px;
+  }
+  .fb-wall-likes div span { color: #600; }
+
+/* Comments */
+  .fb-wall-comments { margin: 2px 0 0 -30px; }
+  .fb-wall-comment {
+    background-color: #666;
+    border-bottom: 1px solid #888;
+    margin-top: 2px;
+    padding: 5px 5px 4px;
+    display: block;
+    overflow: hidden;
+  }
+  .fb-wall-comment-message{ display: table; }
+  .fb-wall-comment-from-name{ font: { size: 1em; weight: bold; } color: #600; }
+  .fb-wall-comment-from-date { color: #777; clear: left; display: block; }
+  .fb-wall-comment-avatar{
+    @include square(32px);
+    float: left;
+    margin-right: 5px;
+    overflow: hidden;
+  }
+  .fb-wall-comment-avatar img { @include square(32px); }
+  .fb-wall:after, .fb-wall-media:after, .fb-wall-clean{
+    content:'.';
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+    font-size:0;
+    line-height:0;
   }
 }
 
@@ -176,6 +268,46 @@ header {
   }
 }
 
+#events {
+  section {
+    h3 { 
+      float: left; 
+      width: 65%;
+      padding-bottom: 0.25em;
+      border-bottom: 1px solid #fff;
+    }
+    ul {
+      width: 60%;
+      margin-bottom: 3em;
+      float: left;
+      li {
+        font-size: 2.4em;
+        margin-bottom: 1.25em;
+        clear: both;
+        .img-container {
+          width: 12.5em;
+          height: 8.33em;
+          margin: 0 0.94em 0.94em 0;
+          float: left;
+          overflow: hidden;
+          border: 3px solid #ccc;
+          img { width: 100%; }
+        }
+        time { margin-bottom: 1em; }
+        address { margin-top: 1em; }
+        time, address { 
+          font-size: 0.75em; 
+          width: 50%; 
+          float: left; 
+        }
+      }
+    }
+    aside { float: right; width: 30%;
+      h3 { width: 100%; }
+    }
+  }
+}
+
 footer {
   p { float: left; width: 50%; }
   ul { 
@@ -186,6 +318,7 @@ footer {
       width: auto;
       float: left;
       &.title { border-bottom: 1px solid $text-color; float: none; }
+      &:nth-last-child(1) { margin-top: 0.2em; }
       a {
         @include hidden;
         @include square(20px);
@@ -196,6 +329,53 @@ footer {
         &.twitter { background-image: url(images/twitter.png); }
       }
     } 
+  }
+  form {
+    input {
+      font-size: 1.1em;
+      background: #333;
+      color: #fff;
+      float: left;
+      &[type=email] { width: 11.5em; margin-right: 0.25em; }
+      &[type=submit] { font-size: 0.69em; width: 5em; }
+    }
+  }
+}
+
+form {
+  label {
+    font-size: 1.6em;
+    display: block;
+    width: 100%;
+    margin: 1em 0; 
+    color: #fff;
+    input[type=text],
+    input[type=email],
+    textarea {
+      font-size: 1em;
+      width: 100%;
+      padding: 0.35em;
+      margin-top: 0.5em;
+    }
+    textarea {
+      height: 3em;
+      @include transition(height, 0.5s, ease-in-out);
+      &:focus { height: 6em; }
+    }
+  }
+  input, textarea {
+    width: 100%;
+    background: $body-bg;
+    color: #fff;
+    border: 1px solid #666;
+    @include border-radius(2px);
+    &:focus { background: #5b4242; }
+  }
+  input[type=submit] { 
+    font-size: 1.6em;
+    padding: 0.5em;
+    cursor: pointer;
+    &:hover { background: #5b4242; } 
   }
 }
 

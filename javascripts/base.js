@@ -1,8 +1,10 @@
 (function() {
-  var setupRosterPage;
+  var setupEventPage, setupHomePage, setupRosterPage;
 
   $(function() {
     if ($('body').attr('id') === 'roster') setupRosterPage();
+    if ($('body').attr('id') === 'home') setupHomePage();
+    if ($('body').attr('id') === 'events') setupEventPage();
     return $('#mailchimp').submit(function() {
       var email, last_name;
       email = $('input[type=email]').val();
@@ -37,6 +39,33 @@
         $current.removeClass('current');
         $target.fadeIn('fast');
         return $target.addClass('current');
+      });
+      return false;
+    });
+  };
+
+  setupHomePage = function() {
+    return $('#fb-wall').fbWall({
+      id: 'Sparkmasterflex',
+      accessToken: 'AAAC7gAoWDQ0BAIOpdjjmOsgPEj7hrCAhPSMDoqRj4gvH0hisICOZBxB2wqzP8eMo7Gzl6zQYSf1LmKzR4CV2cFc4sgpgZD',
+      showGuestEntries: true,
+      showComments: true,
+      max: 4,
+      timeConversion: 24
+    });
+  };
+
+  setupEventPage = function() {
+    return $('form#join-us').submit(function() {
+      var form_data;
+      form_data = $(this).serialize();
+      $.ajax({
+        url: '/includes/functions.php',
+        method: 'POST',
+        data: form_data,
+        success: function(response) {
+          return console.log(response);
+        }
       });
       return false;
     });

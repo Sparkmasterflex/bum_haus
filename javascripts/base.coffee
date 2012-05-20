@@ -1,5 +1,7 @@
 $ ->
   setupRosterPage() if $('body').attr('id') is 'roster'
+  setupHomePage() if $('body').attr('id') is 'home'
+  setupEventPage() if $('body').attr('id') is 'events'
   
   $('#mailchimp').submit () ->
     email = $('input[type=email]').val()
@@ -32,3 +34,23 @@ setupRosterPage = () ->
       $target.addClass 'current'
     false
 
+
+setupHomePage = () ->
+  $('#fb-wall').fbWall
+    id: 'Sparkmasterflex'
+    accessToken: 'AAAC7gAoWDQ0BAIOpdjjmOsgPEj7hrCAhPSMDoqRj4gvH0hisICOZBxB2wqzP8eMo7Gzl6zQYSf1LmKzR4CV2cFc4sgpgZD'
+    showGuestEntries: true
+    showComments: true
+    max: 4
+    timeConversion: 24
+
+setupEventPage = () ->
+  $('form#join-us').submit () ->
+    form_data = $(this).serialize()
+    $.ajax
+      url: '/includes/functions.php'
+      method: 'POST'
+      data: form_data
+      success: (response) ->
+        console.log response
+    false

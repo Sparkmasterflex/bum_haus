@@ -28,6 +28,7 @@
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <script src="/javascripts/base.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.neosmart.fb.wall.js" type="text/javascript"></script>
   
   <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
 </head>
@@ -42,7 +43,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="?page=roster">Roster</a></li>
         <li><a href="/">Gallery</a></li>
-        <li><a href="/">Events</a></li>
+        <li><a href="?page=events">Events</a></li>
         <li><a href="/">Contact</a></li>
       </ul>
     </nav>
@@ -59,6 +60,7 @@
       <li>
         <form id="mailchimp" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
           <input type="email" name="email" placeholder="enter email address" />
+          <input type="hidden" value="true" name="mailchimp" />
           <input type="submit" value="Submit" />
         </form>
       </li>

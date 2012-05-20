@@ -1,5 +1,10 @@
 <?php
-  if($_POST) { return storeAddress($_POST); }
+  require_once("facebook_sdk/facebook.php");
+  
+  if($_POST) {
+    if($_POST['mailchimp']) { echo storeAddress($_POST); }
+    if($_POST['join-us']) { echo sendEmail($_POST); }
+  }
   
   function including($page) {
     include $_SERVER['DOCUMENT_ROOT'] . "/includes/_$page.php";
@@ -33,5 +38,35 @@
       return 'Error: ' . $api->errorMessage;
     }
   }
-
+  
+  function sendEmail($post) {
+    date_default_timezone_set('America/New_York');
+    $errors = array();
+    if(!$post['name']){ $errors['name'] = "Please fill in your name"; }
+    if(!$post['email']){ $errors['email'] = "No email address provided"; }
+    if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*$/i", $post['email'])) { $errors['email'] = "Email address is invalid"; }
+    
+    if(empty($errors)) {
+      $url     = $_SERVER['HTTP_HOST'];
+      $name    = $params['name'];
+      $email   = $params['email'];
+      $phone   = $params['phone'];
+      $message = $params['message'];
+  
+      $body  = "New Contact from " . $url;
+      $body .= "Name: " . $name . "\n";
+      $body .= "Email: " . $email . "\n";
+      $body .= "Phone: " . $phone . "\n";
+      $body .= "Message:\n" . $message . "\n";
+      $body .= "Sent At:\n" . date('m/d/Y') . "\n";
+  
+      $subject = "New Contact from" . $url;
+      $headers = "From: " . $name . " &lt;" . $email . "&gt;";
+  
+      $success = mail("raymondke99@gmail.com", $subject, $body, $headers);
+      return "Suckit!!!!";
+    } else {
+      return $errors;
+    }
+  }
 ?>

@@ -11,7 +11,9 @@
 <section class="clearfix">
   <div class='col-3'>
     <h4>b&#252;m haus on facebook</h4>
-    <img src='/images/facebook_holder.png' alt='place holder' />
+    <div id="fb-wall">
+      <p>Loading Facebook Wall</p>
+    </div>
   </div>
   <div class='col-3 even'>
     <h4>News/Events Highlights</h4>
